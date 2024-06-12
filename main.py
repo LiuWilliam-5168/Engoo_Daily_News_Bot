@@ -32,7 +32,7 @@ async def on_message(message: Message) -> None:
     print(f"[{channel}] {username}: \"{user_message}\"")
     await send_message(message, user_message)
 
-@tasks.loop(minutes=1)
+@tasks.loop(hours=6)
 async def send_news_to_all() -> None:
     if not subscribers:
         return
