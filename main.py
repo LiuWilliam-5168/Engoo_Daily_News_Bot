@@ -32,7 +32,7 @@ async def on_message(message: Message) -> None:
     print(f"[{channel}] {username}: \"{user_message}\"")
     await send_message(message, user_message)
 
-@tasks.loop(hours=6)
+@tasks.loop(hours=12)
 async def send_news_to_all() -> None:
     if not subscribers:
         return
@@ -45,7 +45,7 @@ async def send_news_to_all() -> None:
     link = get_response(str(number))
 
     for subscriber in subscribers:
-        daily_response = "News for today: " + link
+        daily_response = "News for today\n" + link
 
         try:
             await subscriber.send(daily_response)

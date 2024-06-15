@@ -7,7 +7,7 @@ help_info = '''# About BOTTER
 This is a Discord Bot that sends you English News from *engoo.com*.
 
 ## Daily News Function
-If you want to recieve a piece of news on an hour basis, just type `-register`.
+If you want to recieve a piece of news on an 12-hour basis, just type `-register`.
 And just type `-unregister` whenever you don't want to recieve.
 
 ## Specific News Function
@@ -46,13 +46,13 @@ async def send_message(message: Message, user_message: str) -> None:
 
     elif user_message == "-register":
         subscribers.add(message.author)
-        subscribe_response: str = "Subscribed Successfully!"
+        subscribe_response: str = ":white_check_mark: Subscribed Successfully!"
         print(f"[System]: {message.author} subscribed!")
         await message.author.send(subscribe_response) if is_private else await message.channel.send(subscribe_response)
 
     elif user_message == "-unregister":
         subscribers.remove(message.author)
-        subscribe_response: str = "Unsubscribed Successfully!"
+        subscribe_response: str = ":saluting_face: Unsubscribed Successfully!"
         print(f"[System]: {message.author} unsubscribed!")
         await message.author.send(subscribe_response) if is_private else await message.channel.send(subscribe_response)
         
@@ -60,11 +60,11 @@ async def send_message(message: Message, user_message: str) -> None:
         user_message = user_message[1:]
         try:
             number: int = int(user_message)
-            await message.author.send("Got it! Wait a second...") if is_private else await message.channel.send("Got it! Wait a second...")
-            response: str = "Here you go: " + get_response(user_message)
+            await message.author.send(":ok_hand: Got it! Wait a second...") if is_private else await message.channel.send(":ok_hand: Got it! Wait a second...")
+            response: str = ":arrow_down: Here you go :)\n" + get_response(user_message)
             await message.author.send(response) if is_private else await message.channel.send(response)
 
         except Exception as e:
-            response = "Nice try! But your format might be something wrong :("
+            response = ":melting_face: Nice try! But your format might be wrong :("
             await message.author.send(response) if is_private else await message.channel.send(response)
             print(f"[System]: {e}")
